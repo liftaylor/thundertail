@@ -12,6 +12,7 @@ namespace testsForTestStuff
     public class Test_class
     {
         [Test] //开始测试
+			//开始测试2
         public void AddTest()
         {
             var org_add_class = new Original_class();
