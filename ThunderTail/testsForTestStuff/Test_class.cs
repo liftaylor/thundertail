@@ -24,7 +24,7 @@ namespace testsForTestStuff
         {
             var org_add_class = new Original_class();
             var result = org_add_class.add(-5, 5);  //result=0 
-            Assert.AreEqual(7, result);  //对比7和result的值
+            Assert.AreEqual(0, result);  //对比7和result的值
         }
     } 
 }
