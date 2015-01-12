@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace TestStuff
 {
-    public class Class1
+
+    public class original_class
     {
+        public int add(int a, int b)
+        {
+            return a + b;
+        }
     }
 }
