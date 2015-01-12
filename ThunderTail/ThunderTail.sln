@@ -14,6 +14,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{69A0E7
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactManager", "ContactManager\ContactManager.csproj", "{5F9ED124-7BD8-44CC-8297-C41A45B773CC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PublishScripts", "PublishScripts", "{7B834F0F-178F-4D49-981A-7EDF5E047E21}"
+	ProjectSection(SolutionItems) = preProject
+		PublishScripts\AzureWebsitePublishModule.psm1 = PublishScripts\AzureWebsitePublishModule.psm1
+		PublishScripts\Publish-WebApplicationWebsite.ps1 = PublishScripts\Publish-WebApplicationWebsite.ps1
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configurations", "Configurations", "{B5DB679E-8309-4E33-99A2-1AD067EEE9FA}"
+	ProjectSection(SolutionItems) = preProject
+		PublishScripts\Configurations\ContactManager-WAWS-dev.json = PublishScripts\Configurations\ContactManager-WAWS-dev.json
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -28,8 +41,15 @@ Global
 		{261D6CC7-B90D-4065-82FD-11140132D4AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{261D6CC7-B90D-4065-82FD-11140132D4AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{261D6CC7-B90D-4065-82FD-11140132D4AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F9ED124-7BD8-44CC-8297-C41A45B773CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F9ED124-7BD8-44CC-8297-C41A45B773CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F9ED124-7BD8-44CC-8297-C41A45B773CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F9ED124-7BD8-44CC-8297-C41A45B773CC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B5DB679E-8309-4E33-99A2-1AD067EEE9FA} = {7B834F0F-178F-4D49-981A-7EDF5E047E21}
 	EndGlobalSection
 EndGlobal

@@ -1,0 +1,21 @@
+{
+    "environmentSettings": {
+        "webSite": {
+            "name": "ContactManager8709",
+            "location": "West Europe"
+        },
+        "databases": [
+            {
+                "connectionStringName": "DefaultConnection",
+                "databaseName": "ContactManager8709_db",
+                "serverName": "",
+                "user": "dbuser",
+                "password": "",
+                "edition": "",
+                "size": "",
+                "collation": "",
+                "location": "West Europe"
+            }
+        ]
+    }
+}
