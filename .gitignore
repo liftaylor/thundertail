@@ -55,6 +55,7 @@ packages/
 [Tt]est[Rr]esult*/
 [Bb]uild[Ll]og.*
 
+nuget.exe
 *_i.c
 *_p.c
 *.ilk
