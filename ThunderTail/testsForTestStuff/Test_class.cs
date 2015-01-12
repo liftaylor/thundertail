@@ -14,7 +14,7 @@ namespace testsForTestStuff
         [Test] //开始测试
         public void AddTest()
         {
-            var org_add_class = new original_class();
+            var org_add_class = new Original_class();
             var result = org_add_class.add(2, 5); //加法class里的function，这里设为2+5
             Assert.AreEqual(7, result);  // 对比运算结果
         }
@@ -22,7 +22,7 @@ namespace testsForTestStuff
         [Test] //第二个测试，测试如果结果和正确值不符的情况
         public void False_AddTest()
         {
-            var org_add_class = new original_class();
+            var org_add_class = new Original_class();
             var result = org_add_class.add(-5, 5);  //result=0 
             Assert.AreEqual(7, result);  //对比7和result的值
         }

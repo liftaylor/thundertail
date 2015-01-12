@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace TestStuff
 {
 
-    public class original_class
+    public class Original_class
     {
         public int add(int a, int b)
         {
