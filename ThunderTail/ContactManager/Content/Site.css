@@ -3,6 +3,73 @@
     padding-bottom: 20px;
 }
 
+#title{
+    border-radius:0px;
+}
+
+#left_block{
+    background-color:#D6D7FE;
+    height:200px;
+    padding-top:5px;
+    padding-bottom:10px;
+    position:relative;
+    top:0px;
+    left:0px;
+}
+
+
+#mid_block {
+    background-color: #FEFDD6;
+    height:200px;
+    padding-top:5px; 
+    padding-bottom:10px;
+    position:relative;
+    top:0px;
+    left:0px;
+}
+
+#right_block{
+    background-color:#D6FED8;
+    height:200px;
+    padding-top:5px;
+    padding-bottom:10px; 
+    position:relative;
+    top:0px;
+    left:0px;
+}
+
+#left_block p{
+    height:75px;
+}
+
+#mid_block p{
+    height:75px;
+}
+
+#right_block p{
+    height:75px;
+}
+
+
+.btn{
+    border-radius:0px;
+}
+
+/*#btn1{
+    position:relative;
+    top:7px;
+    left:0px;
+}
+#btn2{
+    position:relative;
+    top:21px;
+}
+#btn3{
+    position:relative;
+    top:42px;
+}
+    */
+
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
