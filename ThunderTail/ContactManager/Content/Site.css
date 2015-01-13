@@ -55,6 +55,14 @@
     border-radius:0px;
 }
 
+#timeZoneScript{
+    background-color:#FEDDE1;
+}
+
+#testScript{
+    background-color:#FEEBDD;
+}
+
 /*#btn1{
     position:relative;
     top:7px;
