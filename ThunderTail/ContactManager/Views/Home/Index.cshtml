@@ -28,26 +28,50 @@
         <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
         <p><a id="btn3" class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
     </div>
+
+    <div id="testScript" class="col-md-4">
+        <h4>A Tiny Script</h4>
+        <p id="scriptOutput">Here shows the sum of 4 and 5.</p>
+        <button id="script_btn" class="btn btn-default" onclick="testFunction(4,5)"> Run </button>
+        <button id="rst_btn" class="btn btn-default" onclick="resetFunction()"> Reset </button>
+    </div>
+
+    <div id="timeZoneScript" class="col-md-4">
+        <h4>Timezone Converter</h4>
+        <p>This converter converts London time to Ottawa time.</p>
+        <p>Please enter your time with 24hr format.</p>
+        <p>Hour: <input id="Hour" type="number" class="enter" value="" /></p>
+        <p>Minute: <input id="Minute" type="number" class="enter" value="" /></p>
+        <p>The local time in Ottawa is:</p>
+        <p id="Ottawa"></p>
+        <button id="convert_btn" class="btn btn-default" onclick="Time()"> Convert </button>
+    </div>
 </div>
 
-<div id="testScript" class="col-md-6">
-    <h4>A Tiny Script</h4>
-    <p id="scriptOutput">Here shows the sum of 4 and 5.</p>    
-    <button id="script_btn" class="btn btn-default" onclick="testFunction(4,5)"> Run </button>
-    <button id="rst_btn" class="btn btn-default" onclick="resetFunction()"> Reset </button>
-</div>
+<div id="graphdiv2" align="center" style="width:1000px">
+    Plotting!
+    <script type="text/javascript">
+        g2 = new Dygraph(
+          document.getElementById("graphdiv2"),
+          "AAPL.csv", // path to CSV file
+          {}          // options
+        );
 
-<div id="timeZoneScript" class="col-md-6">
-    <h4>Timezone Converter</h4>
-    <p>This converter converts London time to Ottawa time.</p>
-    <p>Please enter your time with 24hr format.</p>
-    <p>Hour: <input id="Hour" type="number" class="enter" value=""/></p>
-    <p>Minute: <input id="Minute" type="number" class="enter" value="" /></p>
-    <p>The local time in Ottawa is:</p>
-    <p id="Ottawa"></p>
-    <button id="convert_btn" class="btn btn-default" onclick="Time()"> Convert </button>
+    </script>
 </div>
+<!--
+<div id="graphdiv3" align="center" style="width:1000px">
+    Plotting!
+    <script type="text/javascript">
+        g3 = new Dygraph(
+          document.getElementById("graphdiv3"),
+          "temperatures.csv", // path to CSV file
+          {}          // options
+        );
 
+    </script>
+</div>
+ -->
 <script>
     var LocalTime_hr;
     var LocalTime_mn;
