@@ -50,8 +50,11 @@
     height:75px;
 }
 
-#graphdiv2{
-    
+#graphdiv2 {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .btn{
