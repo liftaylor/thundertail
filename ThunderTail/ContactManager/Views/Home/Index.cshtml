@@ -32,7 +32,7 @@
     <div id="testScript" class="col-md-4">
         <h4>A Tiny Script</h4>
         <p id="scriptOutput">Here shows the sum of 4 and 5.</p>
-        <button id="script_btn" class="btn btn-default" onclick="testFunction(4,5)"> Run </button>
+        <button id="script_btn" class="btn btn-default" onclick="testFunction(4,5)"> Run </button>     
         <button id="rst_btn" class="btn btn-default" onclick="resetFunction()"> Reset </button>
     </div>
 
@@ -48,7 +48,7 @@
     </div>
 </div>
 
-<div id="graphdiv2" style="width:1200px">
+<div id="graphdiv2" style="width:1000px">
     Plotting!
     <script type="text/javascript">
         g2 = new Dygraph(
@@ -73,29 +73,3 @@
     </script>
 </div>
 -->
-<script>
-    var LocalTime_hr;
-    var LocalTime_mn;
-    var LocalTime;
-
-    function testFunction(a,b) {
-        var c = a + b;
-        document.getElementById("scriptOutput").innerHTML = c;
-    }
-    function resetFunction() {
-        document.getElementById("scriptOutput").innerHTML = "Here shows the sum of 4 and 5.";
-    }
-    function Time() {
-        LocalTime_hr = document.getElementById("Hour").value;
-        LocalTime_mn = document.getElementById("Minute").value;
-        if (LocalTime_hr > 24 || LocalTime_hr < 0 || LocalTime_mn > 60 || LocalTime_mn < 0) {
-            alert("Invalid time format!");
-        } else {
-            LocalTime_hr -= 5;
-        }
-        if (LocalTime_mn < 10) {
-            LocalTime_mn = '0' + LocalTime_mn;
-        }
-        document.getElementById("Ottawa").innerHTML = LocalTime_hr + ':' + LocalTime_mn;
-    }
-</script>
