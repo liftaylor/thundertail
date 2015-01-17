@@ -17,7 +17,6 @@
     left:0px;
 }
 
-
 #mid_block {
     background-color: #FEFDD6;
     height:200px;
@@ -79,24 +78,35 @@ table#datatable{
     background-color:#f1f1c1;
 } 
 
-table#datatable tr:nth-child(even) {
-    background-color: #eee;
-}
-
-table#datatable tr:nth-child(odd) {
-    background-color: #fff;
-}
-
 table#datatable th {
     background-color: #8181F7;
     color:white;
 }
 
-#graph_n_talbe{
+#graph_n_table{
     float:right;
 }
 
+.tableizer-table{
+    width:100%;
+    border:1px solid #BDBDBD;
+}
+
+.tableizer-table th{
+    background-color: #8181F7;
+    color:white;
+
+}
+.tableizer-table tr:nth-child(even){
+    background-color: #eee;
+}
+
+.tableizer-table tr:nth-child(odd){
+    background-color: #fff;
+}
+
 /*CSS for Search Box*/
+
 #searchBoxheader{
 		background-color:#c3dfef;
 }
