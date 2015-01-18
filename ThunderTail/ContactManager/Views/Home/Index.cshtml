@@ -32,33 +32,47 @@
     <div id="testScript" class="col-md-4">
         <h4>A Tiny Script</h4>
         <p id="scriptOutput">Here shows the sum of 4 and 5.</p>
-        <button id="script_btn" class="btn btn-default" onclick="testFunction(4,5)"> Run </button>     
-        <button id="rst_btn" class="btn btn-default" onclick="resetFunction()"> Reset </button>
+        <br>&nbsp;<br> 
+        <button id="script_btn" class="btn btn-default" onclick="testFunction(4,5,0)"> Run </button>
+        <button id="rst_btn" class="btn btn-default" onclick="testFunction(0,0,1)"> Reset </button>
     </div>
 
     <div id="timeZoneScript" class="col-md-4">
         <h4>Timezone Converter</h4>
-        <p>This converter converts London time to Ottawa time.</p>
-        <p>Please enter your time with 24hr format.</p>
-        <p>Hour: <input id="Hour" type="number" class="enter" value="" /></p>
-        <p>Minute: <input id="Minute" type="number" class="enter" value="" /></p>
-        <p>The local time in Ottawa is:</p>
-        <p id="Ottawa"></p>
-        <button id="convert_btn" class="btn btn-default" onclick="Time()"> Convert </button>
+        <p>This converter converts your local time to Ottawa time.</p>
+        <table style="margin-bottom:5px">
+            <tr><td align="right">Your local time is:</td><td id="Local" align="right"></td></tr>
+            <tr><td align="right">Local time in Ottawa:</td><td id="Ottawa" align="right"></td></tr>
+        </table> 
+        <button id="convert_btn" class="btn btn-default" onclick="Time()"> Refresh </button>
     </div>
 </div>
 
 <div class="row">
     <div class="col-md-3">
         <div class="col">
-            <div id="searchBoxheader" >
+            <div id="searchBoxheader">
+                <script type="text/javascript">
+                    window.onload = function () {
+                        //Get submit button
+                        var submitbutton = document.getElementById("box");
+                        //Add listener to submit button
+                        if (submitbutton.addEventListener) {
+                            submitbutton.addEventListener("click", function () {
+                                if (submitbutton.value == 'Search') {
+                                    submitbutton.value = '';
+                                }
+                            });
+                        }
+                    }
+                </script>
                 <form id="searchBoxnewsearch" method="get" action="http://www.google.com">
                     <input type="text" id="box" class="searchBoxtextinput2" name="" size="21" maxlength="120" value="Search"><input type="submit" value=">" class="searchBoxbutton2">
                 </form>
                 <div class="searchBoxclear"></div>
             </div>
-            <div id="Forex_pairs" style="margin:5px">
-                <table id="forex" class="tableizer-table" align="center">
+            <div id="Forex_pairs" style="margin-top:5px; margin-bottom:5px">
+                <table id="forex" class="side_table" align="center">
                     <tr><th>Forex Pairs</th></tr>
                     <tr><td>Forex Pairs 1</td></tr>
                     <tr><td>Forex Pairs 2</td></tr>
@@ -66,22 +80,22 @@
                     <tr><td>Forex Pairs 4</td></tr>
                 </table>
             </div>
-            <div id="Equity_Symbols" style="margin:5px">
-                <table id="equity" class="tableizer-table" align="center">
+            <div id="Equity_Symbols" style="margin-top:5px; margin-bottom:5px">
+                <table id="equity" class="side_table" align="center">
                     <tr><th>Equity Symbols</th></tr>
                     <tr><td>UK Market</td></tr>
                     <tr><td>US Market</td></tr>
                 </table>
             </div>
-            <div id="Others" style="margin:5px">
-                <table id="others" class="tableizer-table" align="center">
+            <div id="Others" style="margin-top:5px; margin-bottom:5px">
+                <table id="others" class="side_table" align="center">
                     <tr><th>Other Items</th></tr>
                     <tr><td>Sub item 1</td></tr>
                     <tr><td>Sub item 2</td></tr>
                     <tr><td>Sub item 3</td></tr>
                 </table>
             </div>
-            <div id="Account" style="border:1px solid; margin:5px; padding:5px">
+            <div id="Account" style="border:1px solid; margin-top:5px; margin-bottom:5px; padding:5px">
                 <h5 algin="center"><b>Account Infomation</b></h5>
                 <p>Total Available:</p>
                 <p>Profit/Loss:</p>
@@ -89,244 +103,257 @@
         </div>
     </div>
     <div id="graph_n_table" class="col-md-9">
-        <div id="graphdiv2" style="width:800px">
-            Plotting!
-            <script type="text/javascript">
-            g2 = new Dygraph(
-              document.getElementById("graphdiv2"),
-              "AAPL.csv", // path to CSV file
-              {}          // options
-            );
+        <div class="col">
+            <div id="graphdiv2" style="width:800px">
+                <p>Plotting!</p>
+                <script type="text/javascript">
+                    g2 = new Dygraph(
+                      document.getElementById("graphdiv2"),
+                      "/Charts/AAPL.csv", // path to CSV file
+                      {}          // options
+                    );
+                </script>
+            </div>
 
-            </script>
-        </div>
-
-        <!--
+            <!--
         <div id="graphdiv3" align="center" style="width:1000px">
             Plotting!
             <script type="text/javascript">
                 g3 = new Dygraph(
                   document.getElementById("graphdiv3"),
-                  "temperatures.csv", // path to CSV file
+                  "/Charts/temperatures.csv", // path to CSV file
                   {}          // options
                 );
 
             </script>
         </div>
         -->
-
-        <tbody>
-            <tr>
-                <td colspan="7">
-                    <div class="scrollit">
-                        <table id="datatable" class="tableizer-table">
-                            <tr class="tableizer-firstrow"><th>Date</th><th>Open</th><th>High</th><th>Low</th><th>Close</th><th>Volume(1E5)</th><th>Adj Close</th></tr>
-                            <tr><td>2015/1/13</td><td>111.43</td><td>112.8</td><td>108.91</td><td>110.22</td><td>668.859</td><td>110.22</td></tr>
-                            <tr><td>2015/1/12</td><td>112.6</td><td>112.63</td><td>108.8</td><td>109.25</td><td>496.508</td><td>109.25</td></tr>
-                            <tr><td>2015/1/9</td><td>112.67</td><td>113.25</td><td>110.21</td><td>112.01</td><td>536.995</td><td>112.01</td></tr>
-                            <tr><td>2015/1/8</td><td>109.23</td><td>112.15</td><td>108.7</td><td>111.89</td><td>593.645</td><td>111.89</td></tr>
-                            <tr><td>2015/1/7</td><td>107.2</td><td>108.2</td><td>106.7</td><td>107.75</td><td>401.059</td><td>107.75</td></tr>
-                            <tr><td>2015/1/6</td><td>106.54</td><td>107.43</td><td>104.63</td><td>106.26</td><td>657.971</td><td>106.26</td></tr>
-                            <tr><td>2015/1/5</td><td>108.29</td><td>108.65</td><td>105.41</td><td>106.25</td><td>642.855</td><td>106.25</td></tr>
-                            <tr><td>2015/1/2</td><td>111.39</td><td>111.44</td><td>107.35</td><td>109.33</td><td>532.046</td><td>109.33</td></tr>
-                            <tr><td>2014/12/31</td><td>112.82</td><td>113.13</td><td>110.21</td><td>110.38</td><td>414.034</td><td>110.38</td></tr>
-                            <tr><td>2014/12/30</td><td>113.64</td><td>113.92</td><td>112.11</td><td>112.52</td><td>298.815</td><td>112.52</td></tr>
-                            <tr><td>2014/12/29</td><td>113.79</td><td>114.77</td><td>113.7</td><td>113.91</td><td>275.989</td><td>113.91</td></tr>
-                            <tr><td>2014/12/26</td><td>112.1</td><td>114.52</td><td>112.01</td><td>113.99</td><td>337.21</td><td>113.99</td></tr>
-                            <tr><td>2014/12/24</td><td>112.58</td><td>112.71</td><td>112.01</td><td>112.01</td><td>144.796</td><td>112.01</td></tr>
-                            <tr><td>2014/12/23</td><td>113.23</td><td>113.33</td><td>112.46</td><td>112.54</td><td>260.284</td><td>112.54</td></tr>
-                            <tr><td>2014/12/22</td><td>112.16</td><td>113.49</td><td>111.97</td><td>112.94</td><td>451.675</td><td>112.94</td></tr>
-                            <tr><td>2014/12/19</td><td>112.26</td><td>113.24</td><td>111.66</td><td>111.78</td><td>884.298</td><td>111.78</td></tr>
-                            <tr><td>2014/12/18</td><td>111.87</td><td>112.65</td><td>110.66</td><td>112.65</td><td>590.062</td><td>112.65</td></tr>
-                            <tr><td>2014/12/17</td><td>107.12</td><td>109.84</td><td>106.82</td><td>109.41</td><td>534.118</td><td>109.41</td></tr>
-                            <tr><td>2014/12/16</td><td>106.37</td><td>110.16</td><td>106.26</td><td>106.75</td><td>607.907</td><td>106.75</td></tr>
-                            <tr><td>2014/12/15</td><td>110.7</td><td>111.6</td><td>106.35</td><td>108.23</td><td>672.181</td><td>108.23</td></tr>
-                            <tr><td>2014/12/12</td><td>110.46</td><td>111.87</td><td>109.58</td><td>109.73</td><td>560.281</td><td>109.73</td></tr>
-                            <tr><td>2014/12/11</td><td>112.26</td><td>113.8</td><td>111.34</td><td>111.62</td><td>414.017</td><td>111.62</td></tr>
-                            <tr><td>2014/12/10</td><td>114.41</td><td>114.85</td><td>111.54</td><td>111.95</td><td>445.653</td><td>111.95</td></tr>
-                            <tr><td>2014/12/9</td><td>110.19</td><td>114.3</td><td>109.35</td><td>114.12</td><td>602.08</td><td>114.12</td></tr>
-                            <tr><td>2014/12/8</td><td>114.1</td><td>114.65</td><td>111.62</td><td>112.4</td><td>576.649</td><td>112.4</td></tr>
-                            <tr><td>2014/12/5</td><td>115.99</td><td>116.08</td><td>114.64</td><td>115</td><td>383.189</td><td>115</td></tr>
-                            <tr><td>2014/12/4</td><td>115.77</td><td>117.2</td><td>115.29</td><td>115.49</td><td>420.445</td><td>115.49</td></tr>
-                            <tr><td>2014/12/3</td><td>115.75</td><td>116.35</td><td>115.11</td><td>115.93</td><td>430.634</td><td>115.93</td></tr>
-                            <tr><td>2014/12/2</td><td>113.5</td><td>115.75</td><td>112.75</td><td>114.63</td><td>590.751</td><td>114.63</td></tr>
-                            <tr><td>2014/12/1</td><td>118.81</td><td>119.25</td><td>111.27</td><td>115.07</td><td>838.14</td><td>115.07</td></tr>
-                            <tr><td>2014/11/28</td><td>119.27</td><td>119.4</td><td>118.05</td><td>118.93</td><td>248.144</td><td>118.93</td></tr>
-                            <tr><td>2014/11/26</td><td>117.94</td><td>119.1</td><td>117.83</td><td>119</td><td>407.683</td><td>119</td></tr>
-                            <tr><td>2014/11/25</td><td>119.07</td><td>119.75</td><td>117.45</td><td>117.6</td><td>688.404</td><td>117.6</td></tr>
-                            <tr><td>2014/11/24</td><td>116.85</td><td>118.77</td><td>116.62</td><td>118.63</td><td>474.508</td><td>118.63</td></tr>
-                            <tr><td>2014/11/21</td><td>117.51</td><td>117.57</td><td>116.03</td><td>116.47</td><td>571.793</td><td>116.47</td></tr>
-                            <tr><td>2014/11/20</td><td>114.91</td><td>116.86</td><td>114.85</td><td>116.31</td><td>433.955</td><td>116.31</td></tr>
-                            <tr><td>2014/11/19</td><td>115.44</td><td>115.74</td><td>113.8</td><td>114.67</td><td>418.692</td><td>114.67</td></tr>
-                            <tr><td>2014/11/18</td><td>113.94</td><td>115.69</td><td>113.89</td><td>115.47</td><td>442.24</td><td>115.47</td></tr>
-                            <tr><td>2014/11/17</td><td>114.27</td><td>117.28</td><td>113.3</td><td>113.99</td><td>467.467</td><td>113.99</td></tr>
-                            <tr><td>2014/11/14</td><td>113.15</td><td>114.19</td><td>113.05</td><td>114.18</td><td>440.636</td><td>114.18</td></tr>
-                            <tr><td>2014/11/13</td><td>111.8</td><td>113.45</td><td>111.6</td><td>112.82</td><td>595.229</td><td>112.82</td></tr>
-                            <tr><td>2014/11/12</td><td>109.38</td><td>111.43</td><td>109.37</td><td>111.25</td><td>469.424</td><td>111.25</td></tr>
-                            <tr><td>2014/11/11</td><td>108.7</td><td>109.75</td><td>108.4</td><td>109.7</td><td>274.423</td><td>109.7</td></tr>
-                            <tr><td>2014/11/10</td><td>109.02</td><td>109.33</td><td>108.67</td><td>108.83</td><td>271.955</td><td>108.83</td></tr>
-                            <tr><td>2014/11/7</td><td>108.75</td><td>109.32</td><td>108.55</td><td>109.01</td><td>336.915</td><td>109.01</td></tr>
-                            <tr><td>2014/11/6</td><td>108.6</td><td>108.79</td><td>107.8</td><td>108.7</td><td>349.685</td><td>108.7</td></tr>
-                            <tr><td>2014/11/5</td><td>109.1</td><td>109.3</td><td>108.13</td><td>108.86</td><td>374.359</td><td>108.39</td></tr>
-                            <tr><td>2014/11/4</td><td>109.36</td><td>109.49</td><td>107.72</td><td>108.6</td><td>415.744</td><td>108.13</td></tr>
-                            <tr><td>2014/11/3</td><td>108.22</td><td>110.3</td><td>108.01</td><td>109.4</td><td>522.826</td><td>108.93</td></tr>
-                            <tr><td>2014/10/31</td><td>108.01</td><td>108.04</td><td>107.21</td><td>108</td><td>446.393</td><td>107.53</td></tr>
-                            <tr><td>2014/10/30</td><td>106.96</td><td>107.35</td><td>105.9</td><td>106.98</td><td>406.548</td><td>106.52</td></tr>
-                            <tr><td>2014/10/29</td><td>106.65</td><td>107.37</td><td>106.36</td><td>107.34</td><td>526.879</td><td>106.88</td></tr>
-                            <tr><td>2014/10/28</td><td>105.4</td><td>106.74</td><td>105.35</td><td>106.74</td><td>479.399</td><td>106.28</td></tr>
-                            <tr><td>2014/10/27</td><td>104.85</td><td>105.48</td><td>104.7</td><td>105.11</td><td>341.877</td><td>104.66</td></tr>
-                            <tr><td>2014/10/24</td><td>105.18</td><td>105.49</td><td>104.53</td><td>105.22</td><td>470.539</td><td>104.77</td></tr>
-                            <tr><td>2014/10/23</td><td>104.08</td><td>105.05</td><td>103.63</td><td>104.83</td><td>710.747</td><td>104.38</td></tr>
-                            <tr><td>2014/10/22</td><td>102.84</td><td>104.11</td><td>102.6</td><td>102.99</td><td>682.631</td><td>102.55</td></tr>
-                            <tr><td>2014/10/21</td><td>103.02</td><td>103.02</td><td>101.27</td><td>102.47</td><td>946.239</td><td>102.03</td></tr>
-                            <tr><td>2014/10/20</td><td>98.32</td><td>99.96</td><td>98.22</td><td>99.76</td><td>775.173</td><td>99.33</td></tr>
-                            <tr><td>2014/10/17</td><td>97.5</td><td>99</td><td>96.81</td><td>97.67</td><td>681.797</td><td>97.25</td></tr>
-                            <tr><td>2014/10/16</td><td>95.55</td><td>97.72</td><td>95.41</td><td>96.26</td><td>721.545</td><td>95.84</td></tr>
-                            <tr><td>2014/10/15</td><td>97.97</td><td>99.15</td><td>95.18</td><td>97.54</td><td>1009.336</td><td>97.12</td></tr>
-                            <tr><td>2014/10/14</td><td>100.39</td><td>100.52</td><td>98.57</td><td>98.75</td><td>636.886</td><td>98.32</td></tr>
-                            <tr><td>2014/10/13</td><td>101.33</td><td>101.78</td><td>99.81</td><td>99.81</td><td>535.834</td><td>99.38</td></tr>
-                            <tr><td>2014/10/10</td><td>100.69</td><td>102.03</td><td>100.3</td><td>100.73</td><td>663.316</td><td>100.3</td></tr>
-                            <tr><td>2014/10/9</td><td>101.54</td><td>102.38</td><td>100.61</td><td>101.02</td><td>773.765</td><td>100.58</td></tr>
-                            <tr><td>2014/10/8</td><td>98.76</td><td>101.11</td><td>98.31</td><td>100.8</td><td>574.047</td><td>100.36</td></tr>
-                            <tr><td>2014/10/7</td><td>99.43</td><td>100.12</td><td>98.73</td><td>98.75</td><td>420.942</td><td>98.32</td></tr>
-                            <tr><td>2014/10/6</td><td>99.95</td><td>100.65</td><td>99.42</td><td>99.62</td><td>370.512</td><td>99.19</td></tr>
-                            <tr><td>2014/10/3</td><td>99.44</td><td>100.21</td><td>99.04</td><td>99.62</td><td>434.696</td><td>99.19</td></tr>
-                            <tr><td>2014/10/2</td><td>99.27</td><td>100.22</td><td>98.04</td><td>99.9</td><td>477.578</td><td>99.47</td></tr>
-                            <tr><td>2014/10/1</td><td>100.59</td><td>100.69</td><td>98.7</td><td>99.18</td><td>514.913</td><td>98.75</td></tr>
-                            <tr><td>2014/9/30</td><td>100.81</td><td>101.54</td><td>100.53</td><td>100.75</td><td>552.641</td><td>100.32</td></tr>
-                            <tr><td>2014/9/29</td><td>98.65</td><td>100.44</td><td>98.63</td><td>100.11</td><td>497.663</td><td>99.68</td></tr>
-                            <tr><td>2014/9/26</td><td>98.53</td><td>100.75</td><td>98.4</td><td>100.75</td><td>623.705</td><td>100.32</td></tr>
-                            <tr><td>2014/9/25</td><td>100.51</td><td>100.71</td><td>97.72</td><td>97.87</td><td>1000.92</td><td>97.45</td></tr>
-                            <tr><td>2014/9/24</td><td>102.16</td><td>102.85</td><td>101.2</td><td>101.75</td><td>601.718</td><td>101.31</td></tr>
-                            <tr><td>2014/9/23</td><td>100.6</td><td>102.94</td><td>100.54</td><td>102.64</td><td>634.022</td><td>102.2</td></tr>
-                            <tr><td>2014/9/22</td><td>101.8</td><td>102.14</td><td>100.58</td><td>101.06</td><td>527.884</td><td>100.62</td></tr>
-                            <tr><td>2014/9/19</td><td>102.29</td><td>102.35</td><td>100.5</td><td>100.96</td><td>709.024</td><td>100.52</td></tr>
-                            <tr><td>2014/9/18</td><td>101.93</td><td>102.35</td><td>101.56</td><td>101.79</td><td>372.994</td><td>101.35</td></tr>
-                            <tr><td>2014/9/17</td><td>101.27</td><td>101.8</td><td>100.59</td><td>101.58</td><td>609.265</td><td>101.14</td></tr>
-                            <tr><td>2014/9/16</td><td>99.8</td><td>101.26</td><td>98.89</td><td>100.86</td><td>669.081</td><td>100.42</td></tr>
-                            <tr><td>2014/9/15</td><td>102.81</td><td>103.05</td><td>101.44</td><td>101.63</td><td>613.165</td><td>101.19</td></tr>
-                            <tr><td>2014/9/12</td><td>101.21</td><td>102.19</td><td>101.08</td><td>101.66</td><td>640.969</td><td>101.22</td></tr>
-                            <tr><td>2014/9/11</td><td>100.41</td><td>101.44</td><td>99.62</td><td>101.43</td><td>623.531</td><td>100.99</td></tr>
-                            <tr><td>2014/9/10</td><td>98.01</td><td>101.11</td><td>97.76</td><td>101</td><td>1008.696</td><td>100.56</td></tr>
-                            <tr><td>2014/9/9</td><td>99.08</td><td>103.08</td><td>96.14</td><td>97.99</td><td>1898.463</td><td>97.57</td></tr>
-                            <tr><td>2014/9/8</td><td>99.3</td><td>99.31</td><td>98.05</td><td>98.36</td><td>463.567</td><td>97.94</td></tr>
-                            <tr><td>2014/9/5</td><td>98.8</td><td>99.39</td><td>98.31</td><td>98.97</td><td>584.57</td><td>98.54</td></tr>
-                            <tr><td>2014/9/4</td><td>98.85</td><td>100.09</td><td>97.79</td><td>98.12</td><td>857.18</td><td>97.7</td></tr>
-                            <tr><td>2014/9/3</td><td>103.1</td><td>103.2</td><td>98.58</td><td>98.94</td><td>1254.21</td><td>98.51</td></tr>
-                            <tr><td>2014/9/2</td><td>103.06</td><td>103.74</td><td>102.72</td><td>103.3</td><td>535.64</td><td>102.85</td></tr>
-                            <tr><td>2014/8/29</td><td>102.86</td><td>102.9</td><td>102.2</td><td>102.5</td><td>445.95</td><td>102.06</td></tr>
-                            <tr><td>2014/8/28</td><td>101.59</td><td>102.78</td><td>101.56</td><td>102.25</td><td>684.6</td><td>101.81</td></tr>
-                            <tr><td>2014/8/27</td><td>101.02</td><td>102.57</td><td>100.7</td><td>102.13</td><td>523.69</td><td>101.69</td></tr>
-                            <tr><td>2014/8/26</td><td>101.42</td><td>101.5</td><td>100.86</td><td>100.89</td><td>331.52</td><td>100.45</td></tr>
-                            <tr><td>2014/8/25</td><td>101.79</td><td>102.17</td><td>101.28</td><td>101.54</td><td>402.7</td><td>101.1</td></tr>
-                            <tr><td>2014/8/22</td><td>100.29</td><td>101.47</td><td>100.19</td><td>101.32</td><td>441.84</td><td>100.88</td></tr>
-                            <tr><td>2014/8/21</td><td>100.57</td><td>100.94</td><td>100.11</td><td>100.58</td><td>334.78</td><td>100.15</td></tr>
-                            <tr><td>2014/8/20</td><td>100.44</td><td>101.09</td><td>99.95</td><td>100.57</td><td>526.99</td><td>100.14</td></tr>
-                            <tr><td>2014/8/19</td><td>99.41</td><td>100.68</td><td>99.32</td><td>100.53</td><td>693.99</td><td>100.1</td></tr>
-                            <tr><td>2014/8/18</td><td>98.49</td><td>99.37</td><td>97.98</td><td>99.16</td><td>475.72</td><td>98.73</td></tr>
-                            <tr><td>2014/8/15</td><td>97.9</td><td>98.19</td><td>96.86</td><td>97.98</td><td>489.51</td><td>97.56</td></tr>
-                            <tr><td>2014/8/14</td><td>97.33</td><td>97.57</td><td>96.8</td><td>97.5</td><td>281.16</td><td>97.08</td></tr>
-                            <tr><td>2014/8/13</td><td>96.15</td><td>97.24</td><td>96.04</td><td>97.24</td><td>319.16</td><td>96.82</td></tr>
-                            <tr><td>2014/8/12</td><td>96.04</td><td>96.88</td><td>95.61</td><td>95.97</td><td>337.95</td><td>95.56</td></tr>
-                            <tr><td>2014/8/11</td><td>95.27</td><td>96.08</td><td>94.84</td><td>95.99</td><td>365.85</td><td>95.58</td></tr>
-                            <tr><td>2014/8/8</td><td>94.26</td><td>94.82</td><td>93.28</td><td>94.74</td><td>418.65</td><td>94.33</td></tr>
-                            <tr><td>2014/8/7</td><td>94.93</td><td>95.95</td><td>94.1</td><td>94.48</td><td>467.11</td><td>94.07</td></tr>
-                            <tr><td>2014/8/6</td><td>94.75</td><td>95.48</td><td>94.71</td><td>94.96</td><td>385.58</td><td>94.08</td></tr>
-                            <tr><td>2014/8/5</td><td>95.36</td><td>95.68</td><td>94.36</td><td>95.12</td><td>559.33</td><td>94.24</td></tr>
-                            <tr><td>2014/8/4</td><td>96.37</td><td>96.58</td><td>95.17</td><td>95.59</td><td>399.58</td><td>94.71</td></tr>
-                            <tr><td>2014/8/1</td><td>94.9</td><td>96.62</td><td>94.81</td><td>96.13</td><td>485.11</td><td>95.24</td></tr>
-                            <tr><td>2014/7/31</td><td>97.16</td><td>97.45</td><td>95.33</td><td>95.6</td><td>568.43</td><td>94.72</td></tr>
-                            <tr><td>2014/7/30</td><td>98.44</td><td>98.7</td><td>97.67</td><td>98.15</td><td>330.1</td><td>97.24</td></tr>
-                            <tr><td>2014/7/29</td><td>99.33</td><td>99.44</td><td>98.25</td><td>98.38</td><td>431.43</td><td>97.47</td></tr>
-                            <tr><td>2014/7/28</td><td>97.82</td><td>99.24</td><td>97.55</td><td>99.02</td><td>553.18</td><td>98.1</td></tr>
-                            <tr><td>2014/7/25</td><td>96.85</td><td>97.84</td><td>96.64</td><td>97.67</td><td>434.69</td><td>96.77</td></tr>
-                            <tr><td>2014/7/24</td><td>97.04</td><td>97.32</td><td>96.42</td><td>97.03</td><td>457.29</td><td>96.13</td></tr>
-                            <tr><td>2014/7/23</td><td>95.42</td><td>97.88</td><td>95.17</td><td>97.19</td><td>929.18</td><td>96.29</td></tr>
-                            <tr><td>2014/7/22</td><td>94.68</td><td>94.89</td><td>94.12</td><td>94.72</td><td>551.97</td><td>93.84</td></tr>
-                            <tr><td>2014/7/21</td><td>94.99</td><td>95</td><td>93.72</td><td>93.94</td><td>390.79</td><td>93.07</td></tr>
-                            <tr><td>2014/7/18</td><td>93.62</td><td>94.74</td><td>93.02</td><td>94.43</td><td>499.88</td><td>93.56</td></tr>
-                            <tr><td>2014/7/17</td><td>95.03</td><td>95.28</td><td>92.57</td><td>93.09</td><td>572.98</td><td>92.23</td></tr>
-                            <tr><td>2014/7/16</td><td>96.97</td><td>97.1</td><td>94.74</td><td>94.78</td><td>535.02</td><td>93.9</td></tr>
-                            <tr><td>2014/7/15</td><td>96.8</td><td>96.85</td><td>95.03</td><td>95.32</td><td>454.779</td><td>94.44</td></tr>
-                            <tr><td>2014/7/14</td><td>95.86</td><td>96.89</td><td>95.65</td><td>96.45</td><td>428.1</td><td>95.56</td></tr>
-                            <tr><td>2014/7/11</td><td>95.36</td><td>95.89</td><td>94.86</td><td>95.22</td><td>340.18</td><td>94.34</td></tr>
-                            <tr><td>2014/7/10</td><td>93.76</td><td>95.55</td><td>93.52</td><td>95.04</td><td>396.86</td><td>94.16</td></tr>
-                            <tr><td>2014/7/9</td><td>95.44</td><td>95.95</td><td>94.76</td><td>95.39</td><td>364.36</td><td>94.51</td></tr>
-                            <tr><td>2014/7/8</td><td>96.27</td><td>96.8</td><td>93.92</td><td>95.35</td><td>652.22</td><td>94.47</td></tr>
-                            <tr><td>2014/7/7</td><td>94.14</td><td>95.99</td><td>94.1</td><td>95.97</td><td>564.68</td><td>95.08</td></tr>
-                            <tr><td>2014/7/3</td><td>93.67</td><td>94.1</td><td>93.2</td><td>94.03</td><td>228.918</td><td>93.16</td></tr>
-                            <tr><td>2014/7/2</td><td>93.87</td><td>94.06</td><td>93.09</td><td>93.48</td><td>284.65</td><td>92.62</td></tr>
-                            <tr><td>2014/7/1</td><td>93.52</td><td>94.07</td><td>93.13</td><td>93.52</td><td>382.23</td><td>92.66</td></tr>
-                            <tr><td>2014/6/30</td><td>92.1</td><td>93.73</td><td>92.09</td><td>92.93</td><td>495.89</td><td>92.07</td></tr>
-                            <tr><td>2014/6/27</td><td>90.82</td><td>92</td><td>90.77</td><td>91.98</td><td>640.29</td><td>91.13</td></tr>
-                            <tr><td>2014/6/26</td><td>90.37</td><td>91.05</td><td>89.8</td><td>90.9</td><td>326.29</td><td>90.06</td></tr>
-                            <tr><td>2014/6/25</td><td>90.21</td><td>90.7</td><td>89.65</td><td>90.36</td><td>368.69</td><td>89.52</td></tr>
-                            <tr><td>2014/6/24</td><td>90.75</td><td>91.74</td><td>90.19</td><td>90.28</td><td>390.36</td><td>89.45</td></tr>
-                            <tr><td>2014/6/23</td><td>91.32</td><td>91.62</td><td>90.6</td><td>90.83</td><td>436.94</td><td>89.99</td></tr>
-                            <tr><td>2014/6/20</td><td>91.85</td><td>92.55</td><td>90.9</td><td>90.91</td><td>1008.98</td><td>90.07</td></tr>
-                            <tr><td>2014/6/19</td><td>92.29</td><td>92.3</td><td>91.34</td><td>91.86</td><td>355.28</td><td>91.01</td></tr>
-                            <tr><td>2014/6/18</td><td>92.27</td><td>92.29</td><td>91.35</td><td>92.18</td><td>335.14</td><td>91.33</td></tr>
-                            <tr><td>2014/6/17</td><td>92.31</td><td>92.7</td><td>91.8</td><td>92.08</td><td>297.26</td><td>91.23</td></tr>
-                            <tr><td>2014/6/16</td><td>91.51</td><td>92.75</td><td>91.45</td><td>92.2</td><td>355.61</td><td>91.35</td></tr>
-                            <tr><td>2014/6/13</td><td>92.2</td><td>92.44</td><td>90.88</td><td>91.28</td><td>545.25</td><td>90.44</td></tr>
-                            <tr><td>2014/6/12</td><td>94.04</td><td>94.12</td><td>91.9</td><td>92.29</td><td>547.49</td><td>91.44</td></tr>
-                            <tr><td>2014/6/11</td><td>94.13</td><td>94.76</td><td>93.47</td><td>93.86</td><td>456.81</td><td>92.99</td></tr>
-                            <tr><td>2014/6/10</td><td>94.73</td><td>95.05</td><td>93.57</td><td>94.25</td><td>627.77</td><td>93.38</td></tr>
-                            <tr><td>2014/6/9</td><td>92.7</td><td>93.88</td><td>91.75</td><td>93.7</td><td>754.15</td><td>92.83</td></tr>
-                            <tr><td>2014/6/6</td><td>649.9</td><td>651.26</td><td>644.47</td><td>645.57</td><td>874.846</td><td>91.37</td></tr>
-                            <tr><td>2014/6/5</td><td>646.2</td><td>649.37</td><td>642.61</td><td>647.35</td><td>759.514</td><td>91.62</td></tr>
-                            <tr><td>2014/6/4</td><td>637.44</td><td>647.89</td><td>636.11</td><td>644.82</td><td>838.705</td><td>91.27</td></tr>
-                            <tr><td>2014/6/3</td><td>628.46</td><td>638.74</td><td>628.25</td><td>637.54</td><td>731.773</td><td>90.24</td></tr>
-                            <tr><td>2014/6/2</td><td>633.96</td><td>634.83</td><td>622.5</td><td>628.65</td><td>923.377</td><td>88.98</td></tr>
-                            <tr><td>2014/5/30</td><td>637.98</td><td>644.17</td><td>628.9</td><td>633</td><td>1410.052</td><td>89.59</td></tr>
-                            <tr><td>2014/5/29</td><td>627.85</td><td>636.87</td><td>627.77</td><td>635.38</td><td>941.185</td><td>89.93</td></tr>
-                            <tr><td>2014/5/28</td><td>626.02</td><td>629.83</td><td>623.78</td><td>624.01</td><td>788.704</td><td>88.32</td></tr>
-                            <tr><td>2014/5/27</td><td>615.88</td><td>625.86</td><td>615.63</td><td>625.63</td><td>872.165</td><td>88.55</td></tr>
-                            <tr><td>2014/5/23</td><td>607.25</td><td>614.73</td><td>606.47</td><td>614.13</td><td>580.524</td><td>86.92</td></tr>
-                            <tr><td>2014/5/22</td><td>606.6</td><td>609.85</td><td>604.1</td><td>607.27</td><td>501.9</td><td>85.95</td></tr>
-                            <tr><td>2014/5/21</td><td>603.83</td><td>606.7</td><td>602.06</td><td>606.31</td><td>492.149</td><td>85.81</td></tr>
-                            <tr><td>2014/5/20</td><td>604.51</td><td>606.4</td><td>600.73</td><td>604.71</td><td>587.09</td><td>85.59</td></tr>
-                            <tr><td>2014/5/19</td><td>597.85</td><td>607.33</td><td>597.33</td><td>604.59</td><td>794.388</td><td>85.57</td></tr>
-                            <tr><td>2014/5/16</td><td>588.63</td><td>597.53</td><td>585.4</td><td>597.51</td><td>690.641</td><td>84.57</td></tr>
-                            <tr><td>2014/5/15</td><td>594.7</td><td>596.6</td><td>588.04</td><td>588.82</td><td>577.115</td><td>83.34</td></tr>
-                            <tr><td>2014/5/14</td><td>592.43</td><td>597.4</td><td>591.74</td><td>593.87</td><td>416.01</td><td>84.05</td></tr>
-                            <tr><td>2014/5/13</td><td>592</td><td>594.54</td><td>590.7</td><td>593.76</td><td>399.343</td><td>84.04</td></tr>
-                            <tr><td>2014/5/12</td><td>587.49</td><td>593.66</td><td>587.4</td><td>592.83</td><td>533.022</td><td>83.91</td></tr>
-                            <tr><td>2014/5/9</td><td>584.54</td><td>586.25</td><td>580.33</td><td>585.54</td><td>728.994</td><td>82.88</td></tr>
-                            <tr><td>2014/5/8</td><td>588.25</td><td>594.41</td><td>586.4</td><td>587.99</td><td>575.743</td><td>83.22</td></tr>
-                            <tr><td>2014/5/7</td><td>595.25</td><td>597.29</td><td>587.73</td><td>592.33</td><td>707.161</td><td>83.37</td></tr>
-                            <tr><td>2014/5/6</td><td>601.8</td><td>604.41</td><td>594.41</td><td>594.41</td><td>936.411</td><td>83.66</td></tr>
-                            <tr><td>2014/5/5</td><td>590.14</td><td>601</td><td>590</td><td>600.96</td><td>717.668</td><td>84.59</td></tr>
-                            <tr><td>2014/5/2</td><td>592.34</td><td>594.2</td><td>589.71</td><td>592.58</td><td>478.786</td><td>83.41</td></tr>
-                            <tr><td>2014/5/1</td><td>592</td><td>594.8</td><td>586.36</td><td>591.48</td><td>610.12</td><td>83.25</td></tr>
-                            <tr><td>2014/4/30</td><td>592.64</td><td>599.43</td><td>589.8</td><td>590.09</td><td>1141.602</td><td>83.06</td></tr>
-                            <tr><td>2014/4/29</td><td>593.74</td><td>595.98</td><td>589.51</td><td>592.33</td><td>843.444</td><td>83.37</td></tr>
-                            <tr><td>2014/4/28</td><td>572.8</td><td>595.75</td><td>572.55</td><td>594.09</td><td>1673.714</td><td>83.62</td></tr>
-                            <tr><td>2014/4/25</td><td>564.53</td><td>571.99</td><td>563.96</td><td>571.94</td><td>975.688</td><td>80.5</td></tr>
-                            <tr><td>2014/4/24</td><td>568.21</td><td>570</td><td>560.73</td><td>567.77</td><td>1899.779</td><td>79.91</td></tr>
-                            <tr><td>2014/4/23</td><td>529.06</td><td>531.13</td><td>524.45</td><td>524.75</td><td>987.35</td><td>73.86</td></tr>
-                            <tr><td>2014/4/22</td><td>528.31</td><td>531.83</td><td>526.5</td><td>531.7</td><td>506.408</td><td>74.84</td></tr>
-                            <tr><td>2014/4/21</td><td>525.34</td><td>532.14</td><td>523.96</td><td>531.17</td><td>456.372</td><td>74.76</td></tr>
-                            <tr><td>2014/4/17</td><td>520</td><td>527.76</td><td>519.2</td><td>524.94</td><td>710.836</td><td>73.89</td></tr>
-                            <tr><td>2014/4/16</td><td>518.05</td><td>521.09</td><td>514.14</td><td>519.01</td><td>536.914</td><td>73.05</td></tr>
-                            <tr><td>2014/4/15</td><td>520.27</td><td>521.64</td><td>511.33</td><td>517.96</td><td>666.225</td><td>72.9</td></tr>
-                            <tr><td>2014/4/14</td><td>521.9</td><td>522.16</td><td>517.21</td><td>521.68</td><td>514.185</td><td>73.43</td></tr>
-                            <tr><td>2014/4/11</td><td>519</td><td>522.83</td><td>517.14</td><td>519.61</td><td>679.294</td><td>73.14</td></tr>
-                            <tr><td>2014/4/10</td><td>530.68</td><td>532.24</td><td>523.17</td><td>523.48</td><td>599.13</td><td>73.68</td></tr>
-                            <tr><td>2014/4/9</td><td>522.64</td><td>530.49</td><td>522.02</td><td>530.32</td><td>515.424</td><td>74.64</td></tr>
-                            <tr><td>2014/4/8</td><td>525.19</td><td>526.12</td><td>518.7</td><td>523.44</td><td>609.721</td><td>73.67</td></tr>
-                            <tr><td>2014/4/7</td><td>528.02</td><td>530.9</td><td>521.89</td><td>523.47</td><td>724.626</td><td>73.68</td></tr>
-                            <tr><td>2014/4/4</td><td>539.81</td><td>540</td><td>530.58</td><td>531.82</td><td>688.128</td><td>74.85</td></tr>
-                            <tr><td>2014/4/3</td><td>541.39</td><td>542.5</td><td>537.64</td><td>538.79</td><td>405.86</td><td>75.83</td></tr>
-                            <tr><td>2014/4/2</td><td>542.38</td><td>543.48</td><td>540.26</td><td>542.55</td><td>451.052</td><td>76.36</td></tr>
-                            <tr><td>2014/4/1</td><td>537.76</td><td>541.87</td><td>536.77</td><td>541.65</td><td>501.9</td><td>76.24</td></tr>
-                            <tr><td>2014/3/31</td><td>539.23</td><td>540.81</td><td>535.93</td><td>536.74</td><td>421.673</td><td>75.55</td></tr>
-                        </table>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
+            <div id="tables">
+                <table id="table_main" class="main_table" width="100%">
+                    <thead class="main_table">
+                        <tr>
+                            <th scope="col">Date</th>
+                            <th scope="col">Open</th>
+                            <th scope="col">High</th>
+                            <th scope="col">Low</th>
+                            <th scope="col">Close</th>
+                            <th scope="col">Volume(1E5)</th>
+                            <th scope="col">Adj Close</th>
+                        </tr>
+                    </thead>
+                    <tfoot><tr><td colspan="7"></td></tr></tfoot>
+                    <tbody>
+                        <tr>
+                            <td colspan="7">
+                                <div class="scrollit">
+                                    <table id="datatable" class="main_table">
+                                        <tr><td>2015/1/13</td><td>111.43</td><td>112.8</td><td>108.91</td><td>110.22</td><td>668.859</td><td>110.22</td></tr>
+                                        <tr><td>2015/1/12</td><td>112.6</td><td>112.63</td><td>108.8</td><td>109.25</td><td>496.508</td><td>109.25</td></tr>
+                                        <tr><td>2015/1/9</td><td>112.67</td><td>113.25</td><td>110.21</td><td>112.01</td><td>536.995</td><td>112.01</td></tr>
+                                        <tr><td>2015/1/8</td><td>109.23</td><td>112.15</td><td>108.7</td><td>111.89</td><td>593.645</td><td>111.89</td></tr>
+                                        <tr><td>2015/1/7</td><td>107.2</td><td>108.2</td><td>106.7</td><td>107.75</td><td>401.059</td><td>107.75</td></tr>
+                                        <tr><td>2015/1/6</td><td>106.54</td><td>107.43</td><td>104.63</td><td>106.26</td><td>657.971</td><td>106.26</td></tr>
+                                        <tr><td>2015/1/5</td><td>108.29</td><td>108.65</td><td>105.41</td><td>106.25</td><td>642.855</td><td>106.25</td></tr>
+                                        <tr><td>2015/1/2</td><td>111.39</td><td>111.44</td><td>107.35</td><td>109.33</td><td>532.046</td><td>109.33</td></tr>
+                                        <tr><td>2014/12/31</td><td>112.82</td><td>113.13</td><td>110.21</td><td>110.38</td><td>414.034</td><td>110.38</td></tr>
+                                        <tr><td>2014/12/30</td><td>113.64</td><td>113.92</td><td>112.11</td><td>112.52</td><td>298.815</td><td>112.52</td></tr>
+                                        <tr><td>2014/12/29</td><td>113.79</td><td>114.77</td><td>113.7</td><td>113.91</td><td>275.989</td><td>113.91</td></tr>
+                                        <tr><td>2014/12/26</td><td>112.1</td><td>114.52</td><td>112.01</td><td>113.99</td><td>337.21</td><td>113.99</td></tr>
+                                        <tr><td>2014/12/24</td><td>112.58</td><td>112.71</td><td>112.01</td><td>112.01</td><td>144.796</td><td>112.01</td></tr>
+                                        <tr><td>2014/12/23</td><td>113.23</td><td>113.33</td><td>112.46</td><td>112.54</td><td>260.284</td><td>112.54</td></tr>
+                                        <tr><td>2014/12/22</td><td>112.16</td><td>113.49</td><td>111.97</td><td>112.94</td><td>451.675</td><td>112.94</td></tr>
+                                        <tr><td>2014/12/19</td><td>112.26</td><td>113.24</td><td>111.66</td><td>111.78</td><td>884.298</td><td>111.78</td></tr>
+                                        <tr><td>2014/12/18</td><td>111.87</td><td>112.65</td><td>110.66</td><td>112.65</td><td>590.062</td><td>112.65</td></tr>
+                                        <tr><td>2014/12/17</td><td>107.12</td><td>109.84</td><td>106.82</td><td>109.41</td><td>534.118</td><td>109.41</td></tr>
+                                        <tr><td>2014/12/16</td><td>106.37</td><td>110.16</td><td>106.26</td><td>106.75</td><td>607.907</td><td>106.75</td></tr>
+                                        <tr><td>2014/12/15</td><td>110.7</td><td>111.6</td><td>106.35</td><td>108.23</td><td>672.181</td><td>108.23</td></tr>
+                                        <tr><td>2014/12/12</td><td>110.46</td><td>111.87</td><td>109.58</td><td>109.73</td><td>560.281</td><td>109.73</td></tr>
+                                        <tr><td>2014/12/11</td><td>112.26</td><td>113.8</td><td>111.34</td><td>111.62</td><td>414.017</td><td>111.62</td></tr>
+                                        <tr><td>2014/12/10</td><td>114.41</td><td>114.85</td><td>111.54</td><td>111.95</td><td>445.653</td><td>111.95</td></tr>
+                                        <tr><td>2014/12/9</td><td>110.19</td><td>114.3</td><td>109.35</td><td>114.12</td><td>602.08</td><td>114.12</td></tr>
+                                        <tr><td>2014/12/8</td><td>114.1</td><td>114.65</td><td>111.62</td><td>112.4</td><td>576.649</td><td>112.4</td></tr>
+                                        <tr><td>2014/12/5</td><td>115.99</td><td>116.08</td><td>114.64</td><td>115</td><td>383.189</td><td>115</td></tr>
+                                        <tr><td>2014/12/4</td><td>115.77</td><td>117.2</td><td>115.29</td><td>115.49</td><td>420.445</td><td>115.49</td></tr>
+                                        <tr><td>2014/12/3</td><td>115.75</td><td>116.35</td><td>115.11</td><td>115.93</td><td>430.634</td><td>115.93</td></tr>
+                                        <tr><td>2014/12/2</td><td>113.5</td><td>115.75</td><td>112.75</td><td>114.63</td><td>590.751</td><td>114.63</td></tr>
+                                        <tr><td>2014/12/1</td><td>118.81</td><td>119.25</td><td>111.27</td><td>115.07</td><td>838.14</td><td>115.07</td></tr>
+                                        <tr><td>2014/11/28</td><td>119.27</td><td>119.4</td><td>118.05</td><td>118.93</td><td>248.144</td><td>118.93</td></tr>
+                                        <tr><td>2014/11/26</td><td>117.94</td><td>119.1</td><td>117.83</td><td>119</td><td>407.683</td><td>119</td></tr>
+                                        <tr><td>2014/11/25</td><td>119.07</td><td>119.75</td><td>117.45</td><td>117.6</td><td>688.404</td><td>117.6</td></tr>
+                                        <tr><td>2014/11/24</td><td>116.85</td><td>118.77</td><td>116.62</td><td>118.63</td><td>474.508</td><td>118.63</td></tr>
+                                        <tr><td>2014/11/21</td><td>117.51</td><td>117.57</td><td>116.03</td><td>116.47</td><td>571.793</td><td>116.47</td></tr>
+                                        <tr><td>2014/11/20</td><td>114.91</td><td>116.86</td><td>114.85</td><td>116.31</td><td>433.955</td><td>116.31</td></tr>
+                                        <tr><td>2014/11/19</td><td>115.44</td><td>115.74</td><td>113.8</td><td>114.67</td><td>418.692</td><td>114.67</td></tr>
+                                        <tr><td>2014/11/18</td><td>113.94</td><td>115.69</td><td>113.89</td><td>115.47</td><td>442.24</td><td>115.47</td></tr>
+                                        <tr><td>2014/11/17</td><td>114.27</td><td>117.28</td><td>113.3</td><td>113.99</td><td>467.467</td><td>113.99</td></tr>
+                                        <tr><td>2014/11/14</td><td>113.15</td><td>114.19</td><td>113.05</td><td>114.18</td><td>440.636</td><td>114.18</td></tr>
+                                        <tr><td>2014/11/13</td><td>111.8</td><td>113.45</td><td>111.6</td><td>112.82</td><td>595.229</td><td>112.82</td></tr>
+                                        <tr><td>2014/11/12</td><td>109.38</td><td>111.43</td><td>109.37</td><td>111.25</td><td>469.424</td><td>111.25</td></tr>
+                                        <tr><td>2014/11/11</td><td>108.7</td><td>109.75</td><td>108.4</td><td>109.7</td><td>274.423</td><td>109.7</td></tr>
+                                        <tr><td>2014/11/10</td><td>109.02</td><td>109.33</td><td>108.67</td><td>108.83</td><td>271.955</td><td>108.83</td></tr>
+                                        <tr><td>2014/11/7</td><td>108.75</td><td>109.32</td><td>108.55</td><td>109.01</td><td>336.915</td><td>109.01</td></tr>
+                                        <tr><td>2014/11/6</td><td>108.6</td><td>108.79</td><td>107.8</td><td>108.7</td><td>349.685</td><td>108.7</td></tr>
+                                        <tr><td>2014/11/5</td><td>109.1</td><td>109.3</td><td>108.13</td><td>108.86</td><td>374.359</td><td>108.39</td></tr>
+                                        <tr><td>2014/11/4</td><td>109.36</td><td>109.49</td><td>107.72</td><td>108.6</td><td>415.744</td><td>108.13</td></tr>
+                                        <tr><td>2014/11/3</td><td>108.22</td><td>110.3</td><td>108.01</td><td>109.4</td><td>522.826</td><td>108.93</td></tr>
+                                        <tr><td>2014/10/31</td><td>108.01</td><td>108.04</td><td>107.21</td><td>108</td><td>446.393</td><td>107.53</td></tr>
+                                        <tr><td>2014/10/30</td><td>106.96</td><td>107.35</td><td>105.9</td><td>106.98</td><td>406.548</td><td>106.52</td></tr>
+                                        <tr><td>2014/10/29</td><td>106.65</td><td>107.37</td><td>106.36</td><td>107.34</td><td>526.879</td><td>106.88</td></tr>
+                                        <tr><td>2014/10/28</td><td>105.4</td><td>106.74</td><td>105.35</td><td>106.74</td><td>479.399</td><td>106.28</td></tr>
+                                        <tr><td>2014/10/27</td><td>104.85</td><td>105.48</td><td>104.7</td><td>105.11</td><td>341.877</td><td>104.66</td></tr>
+                                        <tr><td>2014/10/24</td><td>105.18</td><td>105.49</td><td>104.53</td><td>105.22</td><td>470.539</td><td>104.77</td></tr>
+                                        <tr><td>2014/10/23</td><td>104.08</td><td>105.05</td><td>103.63</td><td>104.83</td><td>710.747</td><td>104.38</td></tr>
+                                        <tr><td>2014/10/22</td><td>102.84</td><td>104.11</td><td>102.6</td><td>102.99</td><td>682.631</td><td>102.55</td></tr>
+                                        <tr><td>2014/10/21</td><td>103.02</td><td>103.02</td><td>101.27</td><td>102.47</td><td>946.239</td><td>102.03</td></tr>
+                                        <tr><td>2014/10/20</td><td>98.32</td><td>99.96</td><td>98.22</td><td>99.76</td><td>775.173</td><td>99.33</td></tr>
+                                        <tr><td>2014/10/17</td><td>97.5</td><td>99</td><td>96.81</td><td>97.67</td><td>681.797</td><td>97.25</td></tr>
+                                        <tr><td>2014/10/16</td><td>95.55</td><td>97.72</td><td>95.41</td><td>96.26</td><td>721.545</td><td>95.84</td></tr>
+                                        <tr><td>2014/10/15</td><td>97.97</td><td>99.15</td><td>95.18</td><td>97.54</td><td>1009.336</td><td>97.12</td></tr>
+                                        <tr><td>2014/10/14</td><td>100.39</td><td>100.52</td><td>98.57</td><td>98.75</td><td>636.886</td><td>98.32</td></tr>
+                                        <tr><td>2014/10/13</td><td>101.33</td><td>101.78</td><td>99.81</td><td>99.81</td><td>535.834</td><td>99.38</td></tr>
+                                        <tr><td>2014/10/10</td><td>100.69</td><td>102.03</td><td>100.3</td><td>100.73</td><td>663.316</td><td>100.3</td></tr>
+                                        <tr><td>2014/10/9</td><td>101.54</td><td>102.38</td><td>100.61</td><td>101.02</td><td>773.765</td><td>100.58</td></tr>
+                                        <tr><td>2014/10/8</td><td>98.76</td><td>101.11</td><td>98.31</td><td>100.8</td><td>574.047</td><td>100.36</td></tr>
+                                        <tr><td>2014/10/7</td><td>99.43</td><td>100.12</td><td>98.73</td><td>98.75</td><td>420.942</td><td>98.32</td></tr>
+                                        <tr><td>2014/10/6</td><td>99.95</td><td>100.65</td><td>99.42</td><td>99.62</td><td>370.512</td><td>99.19</td></tr>
+                                        <tr><td>2014/10/3</td><td>99.44</td><td>100.21</td><td>99.04</td><td>99.62</td><td>434.696</td><td>99.19</td></tr>
+                                        <tr><td>2014/10/2</td><td>99.27</td><td>100.22</td><td>98.04</td><td>99.9</td><td>477.578</td><td>99.47</td></tr>
+                                        <tr><td>2014/10/1</td><td>100.59</td><td>100.69</td><td>98.7</td><td>99.18</td><td>514.913</td><td>98.75</td></tr>
+                                        <tr><td>2014/9/30</td><td>100.81</td><td>101.54</td><td>100.53</td><td>100.75</td><td>552.641</td><td>100.32</td></tr>
+                                        <tr><td>2014/9/29</td><td>98.65</td><td>100.44</td><td>98.63</td><td>100.11</td><td>497.663</td><td>99.68</td></tr>
+                                        <tr><td>2014/9/26</td><td>98.53</td><td>100.75</td><td>98.4</td><td>100.75</td><td>623.705</td><td>100.32</td></tr>
+                                        <tr><td>2014/9/25</td><td>100.51</td><td>100.71</td><td>97.72</td><td>97.87</td><td>1000.92</td><td>97.45</td></tr>
+                                        <tr><td>2014/9/24</td><td>102.16</td><td>102.85</td><td>101.2</td><td>101.75</td><td>601.718</td><td>101.31</td></tr>
+                                        <tr><td>2014/9/23</td><td>100.6</td><td>102.94</td><td>100.54</td><td>102.64</td><td>634.022</td><td>102.2</td></tr>
+                                        <tr><td>2014/9/22</td><td>101.8</td><td>102.14</td><td>100.58</td><td>101.06</td><td>527.884</td><td>100.62</td></tr>
+                                        <tr><td>2014/9/19</td><td>102.29</td><td>102.35</td><td>100.5</td><td>100.96</td><td>709.024</td><td>100.52</td></tr>
+                                        <tr><td>2014/9/18</td><td>101.93</td><td>102.35</td><td>101.56</td><td>101.79</td><td>372.994</td><td>101.35</td></tr>
+                                        <tr><td>2014/9/17</td><td>101.27</td><td>101.8</td><td>100.59</td><td>101.58</td><td>609.265</td><td>101.14</td></tr>
+                                        <tr><td>2014/9/16</td><td>99.8</td><td>101.26</td><td>98.89</td><td>100.86</td><td>669.081</td><td>100.42</td></tr>
+                                        <tr><td>2014/9/15</td><td>102.81</td><td>103.05</td><td>101.44</td><td>101.63</td><td>613.165</td><td>101.19</td></tr>
+                                        <tr><td>2014/9/12</td><td>101.21</td><td>102.19</td><td>101.08</td><td>101.66</td><td>640.969</td><td>101.22</td></tr>
+                                        <tr><td>2014/9/11</td><td>100.41</td><td>101.44</td><td>99.62</td><td>101.43</td><td>623.531</td><td>100.99</td></tr>
+                                        <tr><td>2014/9/10</td><td>98.01</td><td>101.11</td><td>97.76</td><td>101</td><td>1008.696</td><td>100.56</td></tr>
+                                        <tr><td>2014/9/9</td><td>99.08</td><td>103.08</td><td>96.14</td><td>97.99</td><td>1898.463</td><td>97.57</td></tr>
+                                        <tr><td>2014/9/8</td><td>99.3</td><td>99.31</td><td>98.05</td><td>98.36</td><td>463.567</td><td>97.94</td></tr>
+                                        <tr><td>2014/9/5</td><td>98.8</td><td>99.39</td><td>98.31</td><td>98.97</td><td>584.57</td><td>98.54</td></tr>
+                                        <tr><td>2014/9/4</td><td>98.85</td><td>100.09</td><td>97.79</td><td>98.12</td><td>857.18</td><td>97.7</td></tr>
+                                        <tr><td>2014/9/3</td><td>103.1</td><td>103.2</td><td>98.58</td><td>98.94</td><td>1254.21</td><td>98.51</td></tr>
+                                        <tr><td>2014/9/2</td><td>103.06</td><td>103.74</td><td>102.72</td><td>103.3</td><td>535.64</td><td>102.85</td></tr>
+                                        <tr><td>2014/8/29</td><td>102.86</td><td>102.9</td><td>102.2</td><td>102.5</td><td>445.95</td><td>102.06</td></tr>
+                                        <tr><td>2014/8/28</td><td>101.59</td><td>102.78</td><td>101.56</td><td>102.25</td><td>684.6</td><td>101.81</td></tr>
+                                        <tr><td>2014/8/27</td><td>101.02</td><td>102.57</td><td>100.7</td><td>102.13</td><td>523.69</td><td>101.69</td></tr>
+                                        <tr><td>2014/8/26</td><td>101.42</td><td>101.5</td><td>100.86</td><td>100.89</td><td>331.52</td><td>100.45</td></tr>
+                                        <tr><td>2014/8/25</td><td>101.79</td><td>102.17</td><td>101.28</td><td>101.54</td><td>402.7</td><td>101.1</td></tr>
+                                        <tr><td>2014/8/22</td><td>100.29</td><td>101.47</td><td>100.19</td><td>101.32</td><td>441.84</td><td>100.88</td></tr>
+                                        <tr><td>2014/8/21</td><td>100.57</td><td>100.94</td><td>100.11</td><td>100.58</td><td>334.78</td><td>100.15</td></tr>
+                                        <tr><td>2014/8/20</td><td>100.44</td><td>101.09</td><td>99.95</td><td>100.57</td><td>526.99</td><td>100.14</td></tr>
+                                        <tr><td>2014/8/19</td><td>99.41</td><td>100.68</td><td>99.32</td><td>100.53</td><td>693.99</td><td>100.1</td></tr>
+                                        <tr><td>2014/8/18</td><td>98.49</td><td>99.37</td><td>97.98</td><td>99.16</td><td>475.72</td><td>98.73</td></tr>
+                                        <tr><td>2014/8/15</td><td>97.9</td><td>98.19</td><td>96.86</td><td>97.98</td><td>489.51</td><td>97.56</td></tr>
+                                        <tr><td>2014/8/14</td><td>97.33</td><td>97.57</td><td>96.8</td><td>97.5</td><td>281.16</td><td>97.08</td></tr>
+                                        <tr><td>2014/8/13</td><td>96.15</td><td>97.24</td><td>96.04</td><td>97.24</td><td>319.16</td><td>96.82</td></tr>
+                                        <tr><td>2014/8/12</td><td>96.04</td><td>96.88</td><td>95.61</td><td>95.97</td><td>337.95</td><td>95.56</td></tr>
+                                        <tr><td>2014/8/11</td><td>95.27</td><td>96.08</td><td>94.84</td><td>95.99</td><td>365.85</td><td>95.58</td></tr>
+                                        <tr><td>2014/8/8</td><td>94.26</td><td>94.82</td><td>93.28</td><td>94.74</td><td>418.65</td><td>94.33</td></tr>
+                                        <tr><td>2014/8/7</td><td>94.93</td><td>95.95</td><td>94.1</td><td>94.48</td><td>467.11</td><td>94.07</td></tr>
+                                        <tr><td>2014/8/6</td><td>94.75</td><td>95.48</td><td>94.71</td><td>94.96</td><td>385.58</td><td>94.08</td></tr>
+                                        <tr><td>2014/8/5</td><td>95.36</td><td>95.68</td><td>94.36</td><td>95.12</td><td>559.33</td><td>94.24</td></tr>
+                                        <tr><td>2014/8/4</td><td>96.37</td><td>96.58</td><td>95.17</td><td>95.59</td><td>399.58</td><td>94.71</td></tr>
+                                        <tr><td>2014/8/1</td><td>94.9</td><td>96.62</td><td>94.81</td><td>96.13</td><td>485.11</td><td>95.24</td></tr>
+                                        <tr><td>2014/7/31</td><td>97.16</td><td>97.45</td><td>95.33</td><td>95.6</td><td>568.43</td><td>94.72</td></tr>
+                                        <tr><td>2014/7/30</td><td>98.44</td><td>98.7</td><td>97.67</td><td>98.15</td><td>330.1</td><td>97.24</td></tr>
+                                        <tr><td>2014/7/29</td><td>99.33</td><td>99.44</td><td>98.25</td><td>98.38</td><td>431.43</td><td>97.47</td></tr>
+                                        <tr><td>2014/7/28</td><td>97.82</td><td>99.24</td><td>97.55</td><td>99.02</td><td>553.18</td><td>98.1</td></tr>
+                                        <tr><td>2014/7/25</td><td>96.85</td><td>97.84</td><td>96.64</td><td>97.67</td><td>434.69</td><td>96.77</td></tr>
+                                        <tr><td>2014/7/24</td><td>97.04</td><td>97.32</td><td>96.42</td><td>97.03</td><td>457.29</td><td>96.13</td></tr>
+                                        <tr><td>2014/7/23</td><td>95.42</td><td>97.88</td><td>95.17</td><td>97.19</td><td>929.18</td><td>96.29</td></tr>
+                                        <tr><td>2014/7/22</td><td>94.68</td><td>94.89</td><td>94.12</td><td>94.72</td><td>551.97</td><td>93.84</td></tr>
+                                        <tr><td>2014/7/21</td><td>94.99</td><td>95</td><td>93.72</td><td>93.94</td><td>390.79</td><td>93.07</td></tr>
+                                        <tr><td>2014/7/18</td><td>93.62</td><td>94.74</td><td>93.02</td><td>94.43</td><td>499.88</td><td>93.56</td></tr>
+                                        <tr><td>2014/7/17</td><td>95.03</td><td>95.28</td><td>92.57</td><td>93.09</td><td>572.98</td><td>92.23</td></tr>
+                                        <tr><td>2014/7/16</td><td>96.97</td><td>97.1</td><td>94.74</td><td>94.78</td><td>535.02</td><td>93.9</td></tr>
+                                        <tr><td>2014/7/15</td><td>96.8</td><td>96.85</td><td>95.03</td><td>95.32</td><td>454.779</td><td>94.44</td></tr>
+                                        <tr><td>2014/7/14</td><td>95.86</td><td>96.89</td><td>95.65</td><td>96.45</td><td>428.1</td><td>95.56</td></tr>
+                                        <tr><td>2014/7/11</td><td>95.36</td><td>95.89</td><td>94.86</td><td>95.22</td><td>340.18</td><td>94.34</td></tr>
+                                        <tr><td>2014/7/10</td><td>93.76</td><td>95.55</td><td>93.52</td><td>95.04</td><td>396.86</td><td>94.16</td></tr>
+                                        <tr><td>2014/7/9</td><td>95.44</td><td>95.95</td><td>94.76</td><td>95.39</td><td>364.36</td><td>94.51</td></tr>
+                                        <tr><td>2014/7/8</td><td>96.27</td><td>96.8</td><td>93.92</td><td>95.35</td><td>652.22</td><td>94.47</td></tr>
+                                        <tr><td>2014/7/7</td><td>94.14</td><td>95.99</td><td>94.1</td><td>95.97</td><td>564.68</td><td>95.08</td></tr>
+                                        <tr><td>2014/7/3</td><td>93.67</td><td>94.1</td><td>93.2</td><td>94.03</td><td>228.918</td><td>93.16</td></tr>
+                                        <tr><td>2014/7/2</td><td>93.87</td><td>94.06</td><td>93.09</td><td>93.48</td><td>284.65</td><td>92.62</td></tr>
+                                        <tr><td>2014/7/1</td><td>93.52</td><td>94.07</td><td>93.13</td><td>93.52</td><td>382.23</td><td>92.66</td></tr>
+                                        <tr><td>2014/6/30</td><td>92.1</td><td>93.73</td><td>92.09</td><td>92.93</td><td>495.89</td><td>92.07</td></tr>
+                                        <tr><td>2014/6/27</td><td>90.82</td><td>92</td><td>90.77</td><td>91.98</td><td>640.29</td><td>91.13</td></tr>
+                                        <tr><td>2014/6/26</td><td>90.37</td><td>91.05</td><td>89.8</td><td>90.9</td><td>326.29</td><td>90.06</td></tr>
+                                        <tr><td>2014/6/25</td><td>90.21</td><td>90.7</td><td>89.65</td><td>90.36</td><td>368.69</td><td>89.52</td></tr>
+                                        <tr><td>2014/6/24</td><td>90.75</td><td>91.74</td><td>90.19</td><td>90.28</td><td>390.36</td><td>89.45</td></tr>
+                                        <tr><td>2014/6/23</td><td>91.32</td><td>91.62</td><td>90.6</td><td>90.83</td><td>436.94</td><td>89.99</td></tr>
+                                        <tr><td>2014/6/20</td><td>91.85</td><td>92.55</td><td>90.9</td><td>90.91</td><td>1008.98</td><td>90.07</td></tr>
+                                        <tr><td>2014/6/19</td><td>92.29</td><td>92.3</td><td>91.34</td><td>91.86</td><td>355.28</td><td>91.01</td></tr>
+                                        <tr><td>2014/6/18</td><td>92.27</td><td>92.29</td><td>91.35</td><td>92.18</td><td>335.14</td><td>91.33</td></tr>
+                                        <tr><td>2014/6/17</td><td>92.31</td><td>92.7</td><td>91.8</td><td>92.08</td><td>297.26</td><td>91.23</td></tr>
+                                        <tr><td>2014/6/16</td><td>91.51</td><td>92.75</td><td>91.45</td><td>92.2</td><td>355.61</td><td>91.35</td></tr>
+                                        <tr><td>2014/6/13</td><td>92.2</td><td>92.44</td><td>90.88</td><td>91.28</td><td>545.25</td><td>90.44</td></tr>
+                                        <tr><td>2014/6/12</td><td>94.04</td><td>94.12</td><td>91.9</td><td>92.29</td><td>547.49</td><td>91.44</td></tr>
+                                        <tr><td>2014/6/11</td><td>94.13</td><td>94.76</td><td>93.47</td><td>93.86</td><td>456.81</td><td>92.99</td></tr>
+                                        <tr><td>2014/6/10</td><td>94.73</td><td>95.05</td><td>93.57</td><td>94.25</td><td>627.77</td><td>93.38</td></tr>
+                                        <tr><td>2014/6/9</td><td>92.7</td><td>93.88</td><td>91.75</td><td>93.7</td><td>754.15</td><td>92.83</td></tr>
+                                        <tr><td>2014/6/6</td><td>649.9</td><td>651.26</td><td>644.47</td><td>645.57</td><td>874.846</td><td>91.37</td></tr>
+                                        <tr><td>2014/6/5</td><td>646.2</td><td>649.37</td><td>642.61</td><td>647.35</td><td>759.514</td><td>91.62</td></tr>
+                                        <tr><td>2014/6/4</td><td>637.44</td><td>647.89</td><td>636.11</td><td>644.82</td><td>838.705</td><td>91.27</td></tr>
+                                        <tr><td>2014/6/3</td><td>628.46</td><td>638.74</td><td>628.25</td><td>637.54</td><td>731.773</td><td>90.24</td></tr>
+                                        <tr><td>2014/6/2</td><td>633.96</td><td>634.83</td><td>622.5</td><td>628.65</td><td>923.377</td><td>88.98</td></tr>
+                                        <tr><td>2014/5/30</td><td>637.98</td><td>644.17</td><td>628.9</td><td>633</td><td>1410.052</td><td>89.59</td></tr>
+                                        <tr><td>2014/5/29</td><td>627.85</td><td>636.87</td><td>627.77</td><td>635.38</td><td>941.185</td><td>89.93</td></tr>
+                                        <tr><td>2014/5/28</td><td>626.02</td><td>629.83</td><td>623.78</td><td>624.01</td><td>788.704</td><td>88.32</td></tr>
+                                        <tr><td>2014/5/27</td><td>615.88</td><td>625.86</td><td>615.63</td><td>625.63</td><td>872.165</td><td>88.55</td></tr>
+                                        <tr><td>2014/5/23</td><td>607.25</td><td>614.73</td><td>606.47</td><td>614.13</td><td>580.524</td><td>86.92</td></tr>
+                                        <tr><td>2014/5/22</td><td>606.6</td><td>609.85</td><td>604.1</td><td>607.27</td><td>501.9</td><td>85.95</td></tr>
+                                        <tr><td>2014/5/21</td><td>603.83</td><td>606.7</td><td>602.06</td><td>606.31</td><td>492.149</td><td>85.81</td></tr>
+                                        <tr><td>2014/5/20</td><td>604.51</td><td>606.4</td><td>600.73</td><td>604.71</td><td>587.09</td><td>85.59</td></tr>
+                                        <tr><td>2014/5/19</td><td>597.85</td><td>607.33</td><td>597.33</td><td>604.59</td><td>794.388</td><td>85.57</td></tr>
+                                        <tr><td>2014/5/16</td><td>588.63</td><td>597.53</td><td>585.4</td><td>597.51</td><td>690.641</td><td>84.57</td></tr>
+                                        <tr><td>2014/5/15</td><td>594.7</td><td>596.6</td><td>588.04</td><td>588.82</td><td>577.115</td><td>83.34</td></tr>
+                                        <tr><td>2014/5/14</td><td>592.43</td><td>597.4</td><td>591.74</td><td>593.87</td><td>416.01</td><td>84.05</td></tr>
+                                        <tr><td>2014/5/13</td><td>592</td><td>594.54</td><td>590.7</td><td>593.76</td><td>399.343</td><td>84.04</td></tr>
+                                        <tr><td>2014/5/12</td><td>587.49</td><td>593.66</td><td>587.4</td><td>592.83</td><td>533.022</td><td>83.91</td></tr>
+                                        <tr><td>2014/5/9</td><td>584.54</td><td>586.25</td><td>580.33</td><td>585.54</td><td>728.994</td><td>82.88</td></tr>
+                                        <tr><td>2014/5/8</td><td>588.25</td><td>594.41</td><td>586.4</td><td>587.99</td><td>575.743</td><td>83.22</td></tr>
+                                        <tr><td>2014/5/7</td><td>595.25</td><td>597.29</td><td>587.73</td><td>592.33</td><td>707.161</td><td>83.37</td></tr>
+                                        <tr><td>2014/5/6</td><td>601.8</td><td>604.41</td><td>594.41</td><td>594.41</td><td>936.411</td><td>83.66</td></tr>
+                                        <tr><td>2014/5/5</td><td>590.14</td><td>601</td><td>590</td><td>600.96</td><td>717.668</td><td>84.59</td></tr>
+                                        <tr><td>2014/5/2</td><td>592.34</td><td>594.2</td><td>589.71</td><td>592.58</td><td>478.786</td><td>83.41</td></tr>
+                                        <tr><td>2014/5/1</td><td>592</td><td>594.8</td><td>586.36</td><td>591.48</td><td>610.12</td><td>83.25</td></tr>
+                                        <tr><td>2014/4/30</td><td>592.64</td><td>599.43</td><td>589.8</td><td>590.09</td><td>1141.602</td><td>83.06</td></tr>
+                                        <tr><td>2014/4/29</td><td>593.74</td><td>595.98</td><td>589.51</td><td>592.33</td><td>843.444</td><td>83.37</td></tr>
+                                        <tr><td>2014/4/28</td><td>572.8</td><td>595.75</td><td>572.55</td><td>594.09</td><td>1673.714</td><td>83.62</td></tr>
+                                        <tr><td>2014/4/25</td><td>564.53</td><td>571.99</td><td>563.96</td><td>571.94</td><td>975.688</td><td>80.5</td></tr>
+                                        <tr><td>2014/4/24</td><td>568.21</td><td>570</td><td>560.73</td><td>567.77</td><td>1899.779</td><td>79.91</td></tr>
+                                        <tr><td>2014/4/23</td><td>529.06</td><td>531.13</td><td>524.45</td><td>524.75</td><td>987.35</td><td>73.86</td></tr>
+                                        <tr><td>2014/4/22</td><td>528.31</td><td>531.83</td><td>526.5</td><td>531.7</td><td>506.408</td><td>74.84</td></tr>
+                                        <tr><td>2014/4/21</td><td>525.34</td><td>532.14</td><td>523.96</td><td>531.17</td><td>456.372</td><td>74.76</td></tr>
+                                        <tr><td>2014/4/17</td><td>520</td><td>527.76</td><td>519.2</td><td>524.94</td><td>710.836</td><td>73.89</td></tr>
+                                        <tr><td>2014/4/16</td><td>518.05</td><td>521.09</td><td>514.14</td><td>519.01</td><td>536.914</td><td>73.05</td></tr>
+                                        <tr><td>2014/4/15</td><td>520.27</td><td>521.64</td><td>511.33</td><td>517.96</td><td>666.225</td><td>72.9</td></tr>
+                                        <tr><td>2014/4/14</td><td>521.9</td><td>522.16</td><td>517.21</td><td>521.68</td><td>514.185</td><td>73.43</td></tr>
+                                        <tr><td>2014/4/11</td><td>519</td><td>522.83</td><td>517.14</td><td>519.61</td><td>679.294</td><td>73.14</td></tr>
+                                        <tr><td>2014/4/10</td><td>530.68</td><td>532.24</td><td>523.17</td><td>523.48</td><td>599.13</td><td>73.68</td></tr>
+                                        <tr><td>2014/4/9</td><td>522.64</td><td>530.49</td><td>522.02</td><td>530.32</td><td>515.424</td><td>74.64</td></tr>
+                                        <tr><td>2014/4/8</td><td>525.19</td><td>526.12</td><td>518.7</td><td>523.44</td><td>609.721</td><td>73.67</td></tr>
+                                        <tr><td>2014/4/7</td><td>528.02</td><td>530.9</td><td>521.89</td><td>523.47</td><td>724.626</td><td>73.68</td></tr>
+                                        <tr><td>2014/4/4</td><td>539.81</td><td>540</td><td>530.58</td><td>531.82</td><td>688.128</td><td>74.85</td></tr>
+                                        <tr><td>2014/4/3</td><td>541.39</td><td>542.5</td><td>537.64</td><td>538.79</td><td>405.86</td><td>75.83</td></tr>
+                                        <tr><td>2014/4/2</td><td>542.38</td><td>543.48</td><td>540.26</td><td>542.55</td><td>451.052</td><td>76.36</td></tr>
+                                        <tr><td>2014/4/1</td><td>537.76</td><td>541.87</td><td>536.77</td><td>541.65</td><td>501.9</td><td>76.24</td></tr>
+                                        <tr><td>2014/3/31</td><td>539.23</td><td>540.81</td><td>535.93</td><td>536.74</td><td>421.673</td><td>75.55</td></tr>
+                                    </table>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
-    
 </div>
